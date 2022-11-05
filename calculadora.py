@@ -38,7 +38,14 @@ def janela_detalhes2():
     return sg.Window('Detalhes da empresa escolhida', layout=layout, finalize=True)
 
 #Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
-contador, total_vendido, total_investido ,impostoirrf, quinze, total_taxa_corretagem, total_preco, media_preco_acao = 0
+contador = 0
+total_vendido = 0
+total_investido = 0
+impostoirrf = 0
+quinze = 0
+total_taxa_corretagem = 0
+total_preco = 0
+media_preco_acao = 0
 codigos = []
 
 janela1, janela2, janela3 = janela_inicial(), None, None
@@ -75,8 +82,7 @@ while True:
         contador += 1  
         arq = open(f"{codigo}.txt")
         cont = arq.readlines()
-        cont.append(f'Data: {data}, Código: {codigo}, Quantidade: {quantidade}, Tipo: {tipo}, Preço: {preco}, Taxa: {taxa}')#adiciona mais um elemento(linha) ao conteudo
-        cont.append('\n')
+        cont.append(f'Data: {data}, Código: {codigo}, Quantidade: {quantidade}, Tipo: {tipo}, Preço: {preco}, Taxa: {taxa}\n')#adiciona mais um elemento(linha) ao conteudo
         print(f'Transação {contador} salvada com sucesso!')
         arq = open(f'{codigo}.txt', 'w')
         arq.writelines(cont)
