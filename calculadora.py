@@ -15,7 +15,6 @@ def janela_inicial():
         [sg.Text()],
         [sg.Output(size=(40, 10))],#Output me permite mostrar as coisa na tela,
         [sg.Button('Salvar'), sg.Button('Gerar IR')],
-
     ]
     return sg.Window('Calculadora de IR', layout=layout, finalize=True)
     #fim da janela1
@@ -39,15 +38,8 @@ def janela_detalhes2():
     return sg.Window('Detalhes da empresa escolhida', layout=layout, finalize=True)
 
 #Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
-contador = 0
-total_vendido = 0
-total_investido = 0
-impostoirrf = 0
-quinze = 0
-total_taxa_corretagem = 0
+contador, total_vendido, total_investido ,impostoirrf, quinze, total_taxa_corretagem, total_preco, media_preco_acao = 0
 codigos = []
-total_preco = 0
-media_preco_acao = 0
 
 janela1, janela2, janela3 = janela_inicial(), None, None
 
