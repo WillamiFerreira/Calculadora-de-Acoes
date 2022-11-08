@@ -1,0 +1,3 @@
+Data: 4523453, Código: cvsef, Quantidade: 324, Tipo: venda, Preço: 234, Taxa: 234
+Data: 4523453, Código: cvsef, Quantidade: 324, Tipo: venda, Preço: 234, Taxa: 234
+Data: 4523453, Código: cvsef, Quantidade: 324, Tipo: venda, Preço: 234, Taxa: 234

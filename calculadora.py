@@ -1,7 +1,6 @@
 from PySimpleGUI import PySimpleGUI as sg
 from classes import Janelas as jn
 from tkinter import *
-#janela-inicio. Da linha 3 a 12 está o código responsável pela criação da interface gráfica
 contador = 0
 total_vendido = 0
 total_investido = 0
@@ -33,15 +32,13 @@ def janela_codigos():
         [sg.Input(key='codigo_escolhido', size=(42, 10)), sg.Button('Go'), sg.Button('Voltar')],
         ]
         return sg.Window('Detalhes', layout=layout, finalize=True)
-#Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
 
 janela1, janela2, janela3 = jn.janela_home(), None, None
 
 while True:
     window, eventos, valores = sg.read_all_windows()
-    #em cada linha  da 27 a 36 é lida da interface gráfica o dado digitado e armazenado em uma variável.
+
     if window == janela1:
-        #variáveis que armazenarão os dados
         data = valores['data']
         codigo = valores['codigo']
         quantidade = valores['quantidade']
@@ -63,6 +60,7 @@ while True:
         if codigo not in codigos:
             codigos.append(codigo)
 
+
         arquivo = open(f'{codigo}.txt','a+')
         contador += 1  
         arq = open(f"{codigo}.txt")
@@ -74,6 +72,7 @@ while True:
         arq.close()
         total_preco += float(preco)
     #método que calcula á média do preço das ações.
+
     if window == janela1 and eventos == "Média":
         media_preco_acao +=  float((total_preco)) / contador
         sg.popup('Média de Preço',f'A média de preço das ações é R${media_preco_acao:.2f}')
@@ -104,7 +103,7 @@ while True:
         janela1.un_hide()
         window = janela1
         
-    if window == janela2 and eventos == 'Go':#quando o botão Go for precionado...
+    if window == janela2 and eventos == 'Go':
         file = valores['codigo_escolhido']
         if valores['codigo_escolhido'] not in codigos:
             sg.popup('Código não registrado')

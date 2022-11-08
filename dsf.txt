@@ -1,0 +1,1 @@
+Data: 4523453, Código: dsf, Quantidade: 324, Tipo: venda, Preço: 234, Taxa: 234
