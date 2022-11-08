@@ -1,41 +1,7 @@
 from PySimpleGUI import PySimpleGUI as sg
+from classes import Janelas as jn
 from tkinter import *
 #janela-inicio. Da linha 3 a 12 está o código responsável pela criação da interface gráfica
-def janela_inicial():    
-    sg.theme('lightgreen')
-    menu_def=['&Tools', ['&Detalhar','&Média','&Close',]],['&Save',['&Save File', 'Save &As','Save &Copy'  ]]
-    layout = [
-        [sg.Menu(menu_def, background_color='darkgrey',text_color='black', disabled_text_color='yellow', font='Verdana', pad=(10,10))],
-        [sg.Text('Data:  '), sg.Text(), sg.Text(), sg.Input(key='data', size=(28))],
-        [sg.Text('Código:      '), sg.Input(key='codigo', size=(28))],
-        [sg.Text('Quantidade:'), sg.Input(key='quantidade', size=(28))],
-        [sg.Text('Tipo:'), sg.Radio('Compra', "Radio01", default=False), sg.Radio('Venda', "Radio01", default=True, key='tipo')],
-        [sg.Text('Preço:'), sg.Input(key='preco', size=(32))],
-        [sg.Text('Taxa: '), sg.Input(key='taxa', size=(32)) ],
-        [sg.Text()],
-        [sg.Output(size=(40, 10))],#Output me permite mostrar as coisa na tela,
-        [sg.Button('Salvar'), sg.Button('Gerar IR')],
-    ]
-    return sg.Window('Calculadora de IR', layout=layout, finalize=True)
-    #fim da janela1
-
-def janela_detalhes():
-    sg.theme('lightgreen')
-    layout = [
-        [sg.Text('Códigos das empresas')],
-        [sg.Output(size=(40, 10))],
-        [sg.Input(key='codigo_escolhido', size=(42, 10)), sg.Button('Go'), sg.Button('Voltar')],
-    ]
-    return sg.Window('Detalhes', layout=layout, finalize=True)
-    #fim da segunda janela
-
-def janela_detalhes2():
-    sg.theme('lightgreen')
-    layout = [
-        [sg.Output(size=(83, 10))],
-        [sg.Button('Voltar')]
-    ]
-    return sg.Window('Detalhes da empresa escolhida', layout=layout, finalize=True)
 
 #Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
 contador = 0
@@ -48,7 +14,7 @@ total_preco = 0
 media_preco_acao = 0
 codigos = []
 
-janela1, janela2, janela3 = janela_inicial(), None, None
+janela1, janela2, janela3 = jn.janela_home(), None, None
 
 while True:
     window, eventos, valores = sg.read_all_windows()
@@ -70,7 +36,7 @@ while True:
 
     if window == janela1 and eventos == 'Detalhar':
         janela1.hide()
-        janela2 = janela_detalhes()
+        janela2 = jn.janela_codigos()
         for cod in codigos:
             print(cod)
 
@@ -125,7 +91,7 @@ while True:
             sg.popup('Código não registrado')
         else:
             janela2.hide()
-            janela3 = janela_detalhes2()
+            janela3 = jn.janela_lista_acoes()
             file = open(f'{file}.txt')
             print(f'{file.readlines()}')
 
