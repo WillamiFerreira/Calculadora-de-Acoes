@@ -2,8 +2,6 @@ from PySimpleGUI import PySimpleGUI as sg
 from classes import Janelas as jn
 from tkinter import *
 #janela-inicio. Da linha 3 a 12 está o código responsável pela criação da interface gráfica
-
-#Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
 contador = 0
 total_vendido = 0
 total_investido = 0
@@ -13,6 +11,29 @@ total_taxa_corretagem = 0
 total_preco = 0
 media_preco_acao = 0
 codigos = []
+
+def janela_codigos():
+        sg.theme('lightgreen')
+        headings = ['Código']
+        layout = [
+            [sg.Text('Códigos das empresas')],
+        [sg.Table(values=codigos, 
+                 headings=headings, 
+                 max_col_width=50,
+                 auto_size_columns=False,
+                 display_row_numbers=False,
+                 justification='center',
+                 def_col_width=20,
+                 alternating_row_color='lightgrey',
+                 hide_vertical_scroll=True,
+                 header_font='Bold, 10',
+                 num_rows=5,
+                 key='-TABLE-',
+                 row_height=30)],
+        [sg.Input(key='codigo_escolhido', size=(42, 10)), sg.Button('Go'), sg.Button('Voltar')],
+        ]
+        return sg.Window('Detalhes', layout=layout, finalize=True)
+#Essas variáveis armazenam dados das operações que serão usados no calculo do IR.
 
 janela1, janela2, janela3 = jn.janela_home(), None, None
 
@@ -36,9 +57,7 @@ while True:
 
     if window == janela1 and eventos == 'Detalhar':
         janela1.hide()
-        janela2 = jn.janela_codigos()
-        for cod in codigos:
-            print(cod)
+        janela2 = janela_codigos()
 
     if window == janela1 and eventos == 'Salvar':
         if codigo not in codigos:
@@ -74,11 +93,11 @@ while True:
     #método para gerar IR
     if window == janela1 and eventos == 'Gerar IR':
         if total_vendido <= 20000:
-            print('O total de vendas foi menos que R$20 mil, logo não é precisa pagar IR')
+            sg.popup('O total de vendas foi menos que R$20 mil, logo não é precisa pagar IR')
         else:
             #calculo do imposto de renda
             lucro_real = (lucro - quinze) - impostoirrf
-            print(f'O valor do Imposto de Renda é de R${(lucro - lucro_real) - total_taxa_corretagem:.2f}')
+            sg.popup(f'O valor do Imposto de Renda é de R${(lucro - lucro_real) - total_taxa_corretagem:.2f}')
        
     if window == janela2 and eventos == 'Voltar':
         janela2.hide()

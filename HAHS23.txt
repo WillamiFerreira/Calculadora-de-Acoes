@@ -1,2 +1,0 @@
-Data: 20/03/2022, Código: HAHS23, Quantidade: 30, Tipo: venda, Preço: 23.12, Taxa: 0.455
-Data: 20/03/2022, Código: HAHS23, Quantidade: 30, Tipo: venda, Preço: 23.12, Taxa: 0.455

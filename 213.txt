@@ -1,2 +1,0 @@
-Data: 231, Código: 213, Quantidade: 123, Tipo: venda, Preço: 123, Taxa: 123
-Data: 231, Código: 213, Quantidade: 123, Tipo: venda, Preço: 123, Taxa: 123

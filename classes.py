@@ -19,15 +19,6 @@ class Janelas():
         ]
         return sg.Window('Calculadora de IR', layout=layout, finalize=True)
 
-    def janela_codigos():
-        sg.theme('lightgreen')
-        layout = [
-            [sg.Text('Códigos das empresas')],
-            [sg.Output(size=(40, 10))],
-            [sg.Input(key='codigo_escolhido', size=(42, 10)), sg.Button('Go'), sg.Button('Voltar')],
-        ]
-        return sg.Window('Detalhes', layout=layout, finalize=True)
-
     def janela_lista_acoes():
         sg.theme('lightgreen')
         layout = [
